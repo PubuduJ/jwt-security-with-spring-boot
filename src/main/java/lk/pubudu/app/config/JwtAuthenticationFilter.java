@@ -40,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // Extract token from authorization header.
-        // 'Bearer ' takes 7 digits, Hence rest is the token.
+        // 'Bearer ' takes 7 digits, Hence rest of the string is the token.
         final String jwtToken = authHeader.substring(7);
         // Extract userEmail from the JWT token.
         final String userEmail = jwtService.extractUsername(jwtToken);
