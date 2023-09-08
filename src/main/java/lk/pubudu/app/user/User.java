@@ -5,6 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @Builder
@@ -12,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "_user")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,4 +30,50 @@ public class User {
     private String email;
     @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Should return list of roles.
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        // Should return user entity email as the username.
+        return email;
+    }
+
+    @Override
+    public String getPassword() {
+        // If entity has a field password, this method will not be overridden.
+        // Manually overridden.
+        // Should return user entity password.
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // Not expired by returning true.
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // Not locked by returning true.
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // Not expired by returning true.
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // enable by returning true.
+        return true;
+    }
 }
