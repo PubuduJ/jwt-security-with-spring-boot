@@ -6,6 +6,7 @@ import lk.pubudu.app.user.Role;
 import lk.pubudu.app.user.User;
 import lk.pubudu.app.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +24,10 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Optional<User> isExist = userRepository.findByEmail(request.getEmail());
+        if (isExist.isPresent()) {
+            throw new DuplicateKeyException("User already exist in the database");
+        }
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());

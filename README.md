@@ -78,10 +78,23 @@ a JWT is often issued to them.
 
 <img src="assets/jwt-client-server-working-procedure.png" alt="jwt-client-server-working-procedure" width="900px"/>
 
-In the project, **company profiles web service** is exposed as an **API** under the **company profiles** resource and more information on the company profile web
-service can be found in the below API documentation.
+### API endpoints
 
-- [**API documentation**](https://documenter.getpostman.com/view/25306703/2s9Y5YS34g)
+* In this project postman documentation, there are three api endpoints grouped under the **auth** resource. The first is the **User Registration** Endpoint, 
+which allows new users to create accounts by providing their registration details like first name, last name, email, and password. 
+This step is essential as it **enables users to access the system's services.** 
+
+* The second endpoint is the **User Authentication** Endpoint, 
+designed for **existing users to verify their identity.** Users provide their authentication credentials, typically their **username (email ID) and password**, 
+to prove their identity. **Authentication is a pivotal security measure, ensuring that only authorized users can access specific parts of the system.** 
+
+* The third endpoint is a secured end point which can be accessed once user is authenticated. Here, once a user successfully authenticates and obtains a token, they can securely access protected endpoints by including this token in the **Authorization** 
+header of their requests. This token serves as proof of their identity and authorization, maintaining the system's security and restricting access to 
+authorized individuals.
+
+* The complete documentation provides detailed guidance on utilizing these endpoints with example test cases can be found in the below API documentation.
+
+- [**Auth API documentation**](https://documenter.getpostman.com/view/25306703/2s9YC7SB9P)
 
 ## Used Technologies
 

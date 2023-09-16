@@ -27,7 +27,7 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**")                // All the requests which comes to these end points will not be authenticated. (No need of token)
+                .requestMatchers("/api/auth/**")                   // All the requests which comes to these end points will not be authenticated. (No need of token)
                 .permitAll()
                 .anyRequest()                                               // All the other requests will be authenticated.
                 .authenticated()
