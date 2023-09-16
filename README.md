@@ -74,6 +74,10 @@ a JWT is often issued to them.
   * The server uses the claims in the Payload to determine if the client has the necessary permissions to access the requested resource.
   * If the JWT is valid and the claims authorize access, the request is processed.
 
+### JWT working procedure in between client and server
+
+<img src="assets/jwt-client-server-working-procedure.png" alt="jwt-client-server-working-procedure" width="900px"/>
+
 In the project, **company profiles web service** is exposed as an **API** under the **company profiles** resource and more information on the company profile web
 service can be found in the below API documentation.
 
